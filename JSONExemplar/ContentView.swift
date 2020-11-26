@@ -10,10 +10,21 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var dogImage = UIImage()
+    @State private var typeOfAnimal = 2
+    
+    let typeOfAnimals = ["doggo", "fox"]
     
     var body: some View {
         NavigationView {
             VStack {
+                
+                Picker ("What animal you want?", selection: $typeOfAnimal) {
+                    ForEach (0 ..< typeOfAnimals.count) {
+                    Text("\(self.typeOfAnimals[$0])")
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
                 Button(action: {
                     // get a new dog
                     fetchMoreCuteness()
