@@ -13,6 +13,7 @@
 		C8825E41256FEB6400E248C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8825E40256FEB6400E248C5 /* Assets.xcassets */; };
 		C8825E44256FEB6400E248C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8825E43256FEB6400E248C5 /* Preview Assets.xcassets */; };
 		C8825E4D256FF40600E248C5 /* RandomDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825E4C256FF40600E248C5 /* RandomDog.swift */; };
+		C8D1596B2571614C00861D9E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D1596A2571614C00861D9E /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C8825E43256FEB6400E248C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8825E45256FEB6400E248C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8825E4C256FF40600E248C5 /* RandomDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDog.swift; sourceTree = "<group>"; };
+		C8D1596A2571614C00861D9E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				C8825E42256FEB6400E248C5 /* Preview Content */,
 				C8825E4C256FF40600E248C5 /* RandomDog.swift */,
 				C858824F25707D5900592444 /* RandomFox.swift */,
+				C8D1596A2571614C00861D9E /* Person.swift */,
 			);
 			path = JSONExemplar;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D1596B2571614C00861D9E /* Person.swift in Sources */,
 				C858825025707D5900592444 /* RandomFox.swift in Sources */,
 				C8825E3F256FEB5F00E248C5 /* ContentView.swift in Sources */,
 				C8825E3D256FEB5F00E248C5 /* JSONExemplarApp.swift in Sources */,

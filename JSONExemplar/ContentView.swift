@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var dogImage = UIImage()
     @State private var foxImage = UIImage()
     @State private var typeOfAnimal = 2
+    //track the people we pull information about
+    @State private var people: [Person] = []  // empty array
     
     let typeOfAnimals = ["doggo", "fox"]
         
@@ -20,7 +22,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 
-                Picker ("What animal you want?", selection: $typeOfAnimal) {
+                Picker ("Select your desired breed", selection: $typeOfAnimal) {
                     ForEach (0 ..< typeOfAnimals.count) {
                     Text("\(self.typeOfAnimals[$0])")
                     }
@@ -41,12 +43,66 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                List(people) { person in
+                    Text(person.name)
+                }
+                
             }
             .navigationTitle("Bow WOW!")
         }
+        .onAppear() {
+            fetchNames()
+        }
     }
+    
+    
+    // Get a list of names
+func fetchNames() {
+    
+    // 1. Prepare a URLRequest to send our encoded data as JSON
+    let url = URL(string: "https://api.sheety.co/cc7528321c310ce49882c25dad4143fe/namesCs/sheet1")!
+    var request = URLRequest(url: url)
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpMethod = "GET"
+    
+    // 2. Run the request and process the response
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        
+        // handle the result here – attempt to unwrap optional data provided by task
+        guard let namesData = data else {
+            
+            // Show the error message
+            print("No data in response: \(error?.localizedDescription ?? "Unknown error")")
+            
+            return
+        }
+        
+        // It seems to have worked? Let's see what we have
+        print(String(data: namesData, encoding: .utf8)!)
+        
+        // Now decode from JSON into an array of Swift native data types
+        if let decodedPersonData = try? JSONDecoder().decode(People.self, from: namesData) {
 
-    // < ** Get the dog pictures ** >
+            print("People data decoded from JSON successfully")
+           
+            //update the UI on the main thread
+            DispatchQueue.main.async {
+                people = decodedPersonData.sheet1
+                
+            }
+            
+        } else {
+
+            print("Invalid response from server.")
+            
+
+        }
+        
+    }.resume()
+    
+}
+
+    // < ** Get the DOG pictures ** >
     
         // Get a random pooch pic!
     func fetchMoreCuteness() {
@@ -129,7 +185,7 @@ struct ContentView: View {
     }
     
     
-    // < ** Get the fox pictures ** >
+    // < ** Get the FOX pictures ** >
     
         //Get a random fox pic
     
@@ -231,6 +287,10 @@ struct ContentView: View {
         }
     }
 }
+
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
